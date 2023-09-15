@@ -1,9 +1,8 @@
 {
   "name": "dmego-home-page",
   "version": "1.0.5",
-  "description": "Dmego Home Page",
-  "scripts": {
-  },
+  "description": "Ethan Home Page",
+  "scripts": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/dmego/home.github.io.git"
