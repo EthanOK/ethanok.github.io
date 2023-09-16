@@ -53,7 +53,5 @@
 - 2023-08-28
   - 将壁纸地址换成 cn.bing.com
 
-### Star History
-
-[![Star History Chart](https://api.star-history.com/svg?repos=dmego/home.github.io&type=Date)](https://star-history.com/#dmego/home.github.io&Date)
+### 源码来自 [dmego](https://unpkg.com/dmego-home-page@latest/assets/img/home.gif)
 
