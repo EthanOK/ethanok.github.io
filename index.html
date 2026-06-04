@@ -1,136 +1,126 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
   <head>
-    <!-- Meta, title, CSS, favicons, etc. -->
     <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Ethan Home" />
-    <meta name="keywords" content="Ethan,Homepage" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <meta name="description" content="Ethan — Web3 developer personal site" />
     <meta name="author" content="Ethan" />
-    <title>Ethan's Website</title>
+    <title>Ethan</title>
+    <link rel="icon" href="/go.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500&family=Onest:wght@400;500;600&display=swap"
       rel="stylesheet"
-      type="text/css"
-      href="https://unpkg.com/dmego-home-page@latest/assets/css/onlinewebfonts.css"
     />
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="https://unpkg.com/dmego-home-page@latest/assets/css/vno.css"
-    />
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="https://unpkg.com/dmego-home-page@latest/assets/css/iconfont.css"
-    />
-    <link
-      rel="apple-touch-icon"
-      href="https://unpkg.com/dmego-home-page@latest/apple-touch-icon.png"
-    />
-    <link rel="icon" href="go.svg" />
+    <link rel="stylesheet" href="/assets/css/site.css" />
+    <link rel="stylesheet" href="/assets/css/fx.css" />
   </head>
+  <body data-page="home">
+    <div id="backdrop" role="presentation"></div>
+    <div class="backdrop-vignette" aria-hidden="true"></div>
+    <div class="backdrop-grain" aria-hidden="true"></div>
 
-  <body>
-    <span class="mobile btn-mobile-menu">
-      <i class="social iconfont icon-list btn-mobile-menu__icon"></i>
-      <i class="social iconfont icon-angleup btn-mobile-close__icon hidden"></i>
-    </span>
-    <header id="panel" class="panel-cover">
-      <div class="panel-main">
-        <div class="panel-main__inner panel-inverted">
-          <div class="panel-main__content">
-            <div class="ih-item circle effect right_to_left">
-              <a href="#" title="" class="blog-button">
-                <div class="img">
-                  <img
-                    src="https://avatars.githubusercontent.com/u/44292124"
-                    alt="img"
-                    class="js-avatar iUp profilepic"
-                  />
-                </div>
-                <div class="info iUp">
-                  <div class="info-back">
-                    <h2>HELLO</h2>
-                    <p>Go Forward</p>
-                  </div>
-                </div>
-              </a>
-            </div>
-            <h1 class="panel-cover__title panel-title iUp">
-              <a href="#" title="Ethan Home">Ethan</a>
-            </h1>
-
-            <p class="panel-cover__subtitle panel-subtitle iUp">
-              Enjoy life, contemplate on the essence of existence.
-            </p>
-            <hr class="panel-cover__divider iUp" />
-            <p id="description" class="panel-cover__description iUp">
-              如何得与凉风约, 不共尘沙一并来!
-              <br />
-              <strong>-「中牟道中」</strong>
-            </p>
-            <div>
-              <div class="navigation-wrapper iUp">
-                <nav class="cover-navigation cover-navigation--primary">
-                  <ul class="navigation">
-                    <li class="navigation__item">
-                      <a href="/" class="blog-button">Home</a>
-                    </li>
-
-                    <li class="navigation__item">
-                      <a href="./pages/docs.html">Docs</a>
-                    </li>
-
-                    <li class="navigation__item">
-                      <a href="./pages/tools.html">Tools</a>
-                    </li>
-                    <li class="navigation__item">
-                      <a href="./pages/tools.html">Community</a>
-                    </li>
-                    <li class="navigation__item">
-                      <a href="./pages/faucet.html">Faucet</a>
-                    </li>
-
-                    <li class="navigation__item">
-                      <a
-                        href="https://github.com/EthanOK"
-                        class="blog-button"
-                        target="_blank"
-                        >GitHub</a
-                      >
-                    </li>               
-
-                    <li class="navigation__item">
-                      <a
-                        href="https://decert.me/tutorial/rareskills-gas-optimization"
-                        class="blog-button"
-                        target="_blank"
-                        >Gas Optimization</a
-                      >
-                    </li>
-                   
-                  </ul>
-                </nav>
-              </div>
-            </div>
-          </div>
+    <div class="shell">
+      <header class="topbar" data-reveal>
+        <a href="/" class="topbar-brand">
+          <img
+            class="js-avatar"
+            src="https://avatars.githubusercontent.com/u/44292124"
+            alt="Ethan"
+            width="36"
+            height="36"
+          />
+          <span class="topbar-name">Ethan</span>
+        </a>
+        <nav class="topbar-nav" aria-label="站点导航">
+          <a href="/" class="nav-pill is-active">Home</a>
+          <a href="/pages/docs.html" class="nav-pill">Docs</a>
+          <a href="/pages/tools.html" class="nav-pill">Tools</a>
+          <a href="/pages/community.html" class="nav-pill">Community</a>
+          <a href="/pages/faucet.html" class="nav-pill">Faucet</a>
+        </nav>
+        <div class="topbar-extra">
+          <a
+            href="https://github.com/EthanOK"
+            class="nav-pill nav-pill--ghost"
+            target="_blank"
+            rel="noopener noreferrer"
+            >GitHub</a
+          >
         </div>
-        <div class="panel-cover--overlay cover-slate"></div>
-      </div>
-      <!-- <div class="beian iUp">
-            <a class="icp" href="http://www.miitbeian.gov.cn/publish/query/indexFirst.action" target="_blank">XXX</a>
-            <a class="gwab" href="http://www.beian.gov.cn/portal/recordQuery" target="_blank">XXX</a>
-        </div> -->
-      <div class="remark iUp">
-        <p class="power">
-          Powered By
-          <a href="https://www.bing.com/" target="_blank"> Bing </a>
-          And
-          <a href="https://hitokoto.cn/" target="_blank"> Hitokoto </a>
-        </p>
-      </div>
-    </header>
-    <script type="text/javascript" src="./assets/js/main.js"></script>
+      </header>
+
+      <main class="content">
+        <section class="hero" data-reveal>
+          <p class="hero-label">Web3 · Builder</p>
+          <h1 class="hero-title">Enjoy life,<br />contemplate existence.</h1>
+        </section>
+
+        <div class="bento">
+          <div class="bento-hero" data-reveal>
+            <a
+              href="https://hitokoto.cn/"
+              class="bento-item bento-item--lg"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <span class="bento-arrow" aria-hidden="true">↗</span>
+              <span class="bento-kicker">Hitokoto</span>
+              <p id="description" class="bento-title bento-title--quote">
+                如何得与凉风约，不共尘沙一并来。
+              </p>
+              <span id="hitokoto-from" class="bento-desc">—「中牟道中」</span>
+            </a>
+
+            <a
+              href="https://github.com/EthanOK"
+              class="bento-item bento-item--lg"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <span class="bento-arrow" aria-hidden="true">↗</span>
+              <span class="bento-kicker">Featured</span>
+              <span class="bento-title">GitHub</span>
+              <span class="bento-desc">@EthanOK</span>
+            </a>
+          </div>
+
+          <a class="bento-item bento-item--sm" href="/pages/docs.html" data-reveal>
+            <span class="bento-title">Docs</span>
+            <span class="bento-desc">Solidity · Solana</span>
+            <span class="bento-arrow" aria-hidden="true">→</span>
+          </a>
+          <a class="bento-item bento-item--sm" href="/pages/tools.html" data-reveal>
+            <span class="bento-title">Tools</span>
+            <span class="bento-desc">调试与链上工具</span>
+            <span class="bento-arrow" aria-hidden="true">→</span>
+          </a>
+          <a class="bento-item bento-item--sm" href="/pages/community.html" data-reveal>
+            <span class="bento-title">Community</span>
+            <span class="bento-desc">社区与主页</span>
+            <span class="bento-arrow" aria-hidden="true">→</span>
+          </a>
+          <a class="bento-item bento-item--sm" href="/pages/faucet.html" data-reveal>
+            <span class="bento-title">Faucet</span>
+            <span class="bento-desc">测试网领水</span>
+            <span class="bento-arrow" aria-hidden="true">→</span>
+          </a>
+        </div>
+      </main>
+
+      <footer class="site-footer">
+        <a href="https://www.bing.com/" target="_blank" rel="noopener">Bing</a>
+        ·
+        <a href="https://hitokoto.cn/" target="_blank" rel="noopener">Hitokoto</a>
+      </footer>
+    </div>
+
+    <script src="/assets/js/main.js"></script>
   </body>
 </html>

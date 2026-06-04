@@ -2,38 +2,98 @@
 <html lang="zh-CN">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
     <meta name="robots" content="noindex" />
     <title>404 — Ethan</title>
-    <link rel="icon" href="/go.svg" />
+    <link rel="icon" href="/go.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:ital@0;1&family=Noto+Serif+SC:wght@400;600&family=Syne:wght@600;800&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="/assets/css/not-found.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500&family=Onest:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/assets/css/site.css" />
+    <link rel="stylesheet" href="/assets/css/fx.css" />
+    <style>
+      .err-main {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: clamp(3rem, 12vw, 6rem) 0;
+      }
+      .err-code {
+        margin: 0;
+        font-size: clamp(4rem, 18vw, 7rem);
+        font-weight: 600;
+        letter-spacing: -0.06em;
+        line-height: 1;
+        color: var(--text-muted);
+      }
+      .err-verse {
+        margin: 1.25rem 0 2rem;
+        max-width: 22rem;
+        font-family: var(--font-serif);
+        font-size: 1.05rem;
+        line-height: 1.8;
+      }
+      .err-verse cite {
+        display: block;
+        margin-top: 0.5rem;
+        font-family: var(--font);
+        font-size: 0.78rem;
+        font-style: normal;
+        color: var(--text-muted);
+      }
+      .err-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        justify-content: center;
+      }
+      .err-actions .nav-pill {
+        min-height: 44px;
+        padding: 0.55rem 1.1rem;
+        display: inline-flex;
+        align-items: center;
+      }
+      .err-actions .nav-pill.is-active {
+        background: var(--accent);
+        color: var(--bg);
+      }
+    </style>
   </head>
-  <body class="nf-page">
-    <div class="nf-grain" aria-hidden="true"></div>
-    <div class="nf-grid" aria-hidden="true"></div>
-    <div class="nf-orb" aria-hidden="true"></div>
+  <body>
+    <div id="backdrop" role="presentation"></div>
+    <div class="backdrop-vignette" aria-hidden="true"></div>
+    <div class="backdrop-grain" aria-hidden="true"></div>
 
-    <main class="nf-wrap">
-      <p class="nf-code" aria-hidden="true">
-        <span>4</span><span>0</span><span>4</span>
-      </p>
-      <h1 class="nf-title">Page not found</h1>
-      <blockquote class="nf-verse">
-        如何得与凉风约，不共尘沙一并来。
-        <cite>— 陈与义 · 中牟道中</cite>
-      </blockquote>
-      <nav class="nf-actions" aria-label="返回导航">
-        <a class="nf-btn" href="/">回到首页</a>
-        <a class="nf-btn nf-btn--ghost" href="/pages/tools.html">工具</a>
-      </nav>
-    </main>
+    <div class="shell">
+      <header class="topbar" data-reveal>
+        <a href="/" class="topbar-brand">
+          <span class="topbar-name">Ethan</span>
+        </a>
+        <nav class="topbar-nav" aria-label="站点导航">
+          <a href="/" class="nav-pill">Home</a>
+          <a href="/pages/tools.html" class="nav-pill">Tools</a>
+        </nav>
+      </header>
 
-    <p class="nf-mark"><a href="/">ethanok.github.io</a></p>
+      <main class="content err-main" data-reveal>
+        <p class="err-code">404</p>
+        <h1 class="hero-title" style="font-size: 1.5rem">页面不存在</h1>
+        <blockquote class="err-verse">
+          如何得与凉风约，不共尘沙一并来。
+          <cite>— 陈与义 · 中牟道中</cite>
+        </blockquote>
+        <nav class="err-actions" aria-label="返回">
+          <a href="/" class="nav-pill is-active">首页</a>
+          <a href="/pages/tools.html" class="nav-pill nav-pill--ghost">工具</a>
+        </nav>
+      </main>
+    </div>
+    <script src="/assets/js/main.js"></script>
   </body>
 </html>
