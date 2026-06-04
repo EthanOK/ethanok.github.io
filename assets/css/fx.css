@@ -1,0 +1,557 @@
+/* Motion & glow layer — 炫酷特效 */
+@property --fx-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes fx-rotate {
+  to {
+    --fx-angle: 360deg;
+  }
+}
+
+@keyframes fx-float-a {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(8%, -6%) scale(1.08);
+  }
+}
+
+@keyframes fx-float-b {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(-10%, 8%) scale(1.12);
+  }
+}
+
+@keyframes fx-shimmer {
+  0% {
+    background-position: 0% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+@keyframes fx-pulse-glow {
+  0%,
+  100% {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.15);
+  }
+}
+
+@keyframes fx-scan {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100vh);
+  }
+}
+
+@keyframes fx-backdrop-drift {
+  0% {
+    transform: scale(1.06) translate(0, 0);
+  }
+  50% {
+    transform: scale(1.1) translate(-0.5%, 0.3%);
+  }
+  100% {
+    transform: scale(1.06) translate(0, 0);
+  }
+}
+
+/* Floating orbs + grid */
+.fx-ambient {
+  position: fixed;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.fx-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.55;
+  mix-blend-mode: screen;
+}
+
+.fx-ambient--interactive .fx-orb-a,
+.fx-ambient--interactive .fx-orb-b,
+.fx-ambient--interactive .fx-orb-c {
+  animation: none;
+}
+
+.fx-orb-a {
+  width: min(55vw, 420px);
+  height: min(55vw, 420px);
+  top: -12%;
+  right: -8%;
+  background: radial-gradient(circle, #22b573 0%, transparent 68%);
+  animation: fx-float-a 14s ease-in-out infinite;
+  will-change: transform;
+}
+
+.fx-orb-b {
+  width: min(45vw, 360px);
+  height: min(45vw, 360px);
+  bottom: 5%;
+  left: -10%;
+  background: radial-gradient(circle, #3d8bfd 0%, transparent 70%);
+  opacity: 0.35;
+  animation: fx-float-b 18s ease-in-out infinite reverse;
+}
+
+.fx-orb-c {
+  width: 280px;
+  height: 280px;
+  top: 42%;
+  left: 38%;
+  background: radial-gradient(circle, #a1d06b 0%, transparent 65%);
+  opacity: 0.28;
+  animation: fx-float-a 22s ease-in-out infinite;
+  animation-delay: -6s;
+}
+
+.fx-grid {
+  position: absolute;
+  inset: -50% 0;
+  background-image:
+    linear-gradient(rgba(34, 181, 115, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(34, 181, 115, 0.04) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, black, transparent);
+  opacity: 0.6;
+}
+
+.fx-grid::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 120px;
+  background: linear-gradient(
+    180deg,
+    transparent,
+    rgba(34, 181, 115, 0.12),
+    transparent
+  );
+  animation: fx-scan 8s linear infinite;
+}
+
+/* Cursor spotlight — dual layer + ring + trail */
+.fx-spotlight {
+  position: fixed;
+  left: var(--mx, 50%);
+  top: var(--my, 50%);
+  width: min(75vmax, 780px);
+  height: min(75vmax, 780px);
+  transform: translate(-50%, -50%);
+  background: radial-gradient(
+    circle,
+    rgba(34, 181, 115, 0.22) 0%,
+    rgba(61, 139, 253, 0.08) 32%,
+    transparent 68%
+  );
+  will-change: left, top;
+}
+
+.fx-spotlight--lag {
+  width: min(95vmax, 960px);
+  height: min(95vmax, 960px);
+  left: var(--mx-lag, 50%);
+  top: var(--my-lag, 50%);
+  background: radial-gradient(
+    circle,
+    rgba(126, 232, 255, 0.1) 0%,
+    rgba(34, 181, 115, 0.06) 28%,
+    transparent 62%
+  );
+  mix-blend-mode: screen;
+}
+
+.fx-cursor-ring {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 40px;
+  height: 40px;
+  margin: 0;
+  border-radius: 50%;
+  border: 1.5px solid rgba(34, 181, 115, 0.65);
+  box-shadow:
+    0 0 20px rgba(34, 181, 115, 0.45),
+    inset 0 0 12px rgba(34, 181, 115, 0.15);
+  pointer-events: none;
+  z-index: 9999;
+  transition:
+    width 0.25s var(--ease, ease),
+    height 0.25s ease,
+    margin 0.25s ease,
+    border-color 0.2s ease,
+    opacity 0.25s ease;
+  will-change: transform;
+}
+
+.fx-cursor-ring.is-hover {
+  width: 56px;
+  height: 56px;
+  border-color: rgba(126, 232, 255, 0.85);
+  box-shadow:
+    0 0 28px rgba(61, 139, 253, 0.5),
+    0 0 48px rgba(34, 181, 115, 0.25);
+}
+
+.fx-cursor-dot {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 6px;
+  height: 6px;
+  margin: 0;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 0 12px #fff, 0 0 24px var(--accent, #22b573);
+  pointer-events: none;
+  z-index: 10000;
+  will-change: transform;
+}
+
+/* 鼠标轨迹线 — 渐隐 */
+.fx-trail-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9998;
+}
+
+body.has-pointer-fx {
+  cursor: none;
+}
+
+body.has-pointer-fx a,
+body.has-pointer-fx button {
+  cursor: none;
+}
+
+/* Mesh tint — 与 site.css 遮罩叠加，保证正文区可读 */
+.backdrop-vignette {
+  background:
+    radial-gradient(ellipse 90% 60% at 80% 0%, rgba(34, 181, 115, 0.08), transparent 55%),
+    radial-gradient(ellipse 70% 50% at 10% 90%, rgba(61, 139, 253, 0.05), transparent 50%);
+}
+
+#backdrop.is-loaded {
+  animation: fx-backdrop-drift 28s ease-in-out infinite;
+}
+
+/* Topbar neon ring */
+.topbar {
+  position: relative;
+  isolation: isolate;
+  border: none;
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.08),
+    0 8px 32px rgba(0, 0, 0, 0.45),
+    0 0 40px rgba(34, 181, 115, 0.08);
+}
+
+.topbar::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  z-index: -1;
+  border-radius: inherit;
+  padding: 1px;
+  background: conic-gradient(
+    from var(--fx-angle),
+    transparent 20%,
+    rgba(34, 181, 115, 0.9) 35%,
+    rgba(161, 208, 107, 0.7) 50%,
+    rgba(61, 139, 253, 0.5) 65%,
+    transparent 80%
+  );
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation: fx-rotate 6s linear infinite;
+  opacity: 0.75;
+}
+
+/* Hero gradient text */
+.hero-title,
+.page-head h1 {
+  background: linear-gradient(
+    105deg,
+    #ffffff 0%,
+    #d4ffd9 25%,
+    #22b573 50%,
+    #7ee8ff 75%,
+    #ffffff 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: fx-shimmer 7s linear infinite;
+  filter: drop-shadow(0 2px 18px rgba(0, 0, 0, 0.9));
+}
+
+.hero-label {
+  box-shadow: 0 0 20px rgba(34, 181, 115, 0.25);
+  animation: fx-pulse-glow 3s ease-in-out infinite;
+}
+
+.hero-label::before {
+  animation: fx-pulse-glow 2s ease-in-out infinite;
+  box-shadow: 0 0 12px var(--accent), 0 0 24px rgba(34, 181, 115, 0.6);
+}
+
+/* Avatar halo */
+.topbar-brand img {
+  box-shadow:
+    0 0 0 2px rgba(34, 181, 115, 0.5),
+    0 0 20px rgba(34, 181, 115, 0.45);
+}
+
+.topbar-brand img.is-ready {
+  animation: fx-pulse-glow 4s ease-in-out infinite;
+}
+
+.nav-pill.is-active {
+  background: linear-gradient(135deg, #22b573, #a1d06b);
+  color: #04120a;
+  box-shadow:
+    0 0 20px rgba(34, 181, 115, 0.55),
+    0 0 40px rgba(34, 181, 115, 0.2);
+}
+
+.nav-pill--ghost:hover {
+  box-shadow: 0 0 16px rgba(34, 181, 115, 0.3);
+}
+
+/* Card shine + pointer glow */
+.bento-item,
+.link-tile {
+  isolation: isolate;
+}
+
+.bento-item::before,
+.link-tile::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  z-index: 0;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  background: radial-gradient(
+    circle 140px at var(--px, 50%) var(--py, 50%),
+    rgba(34, 181, 115, 0.35),
+    rgba(61, 139, 253, 0.12) 40%,
+    transparent 70%
+  );
+  pointer-events: none;
+}
+
+.bento-item:hover::before,
+.link-tile:hover::before {
+  opacity: 1;
+}
+
+.bento-item > *,
+.link-tile > * {
+  position: relative;
+  z-index: 1;
+}
+
+.bento-item::after,
+.link-tile::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    105deg,
+    transparent 35%,
+    rgba(255, 255, 255, 0.14) 50%,
+    transparent 65%
+  );
+  transform: translateX(-120%);
+  transition: transform 0.55s var(--ease, ease);
+  pointer-events: none;
+}
+
+.bento-item:hover::after,
+.link-tile:hover::after {
+  transform: translateX(120%);
+}
+
+a.bento-item:hover,
+.link-tile:hover {
+  transform: translateY(-4px);
+  border-color: rgba(34, 181, 115, 0.55);
+  box-shadow:
+    0 12px 40px rgba(0, 0, 0, 0.4),
+    0 0 30px rgba(34, 181, 115, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+.bento-item--accent,
+.bento-hero .bento-item--lg,
+.link-tile--accent {
+  box-shadow: 0 0 24px rgba(34, 181, 115, 0.15);
+}
+
+.bento-item--accent:not(:hover)::before,
+.bento-hero .bento-item--lg:not(:hover)::before,
+.link-tile--accent:not(:hover)::before {
+  opacity: 0.35;
+  background: linear-gradient(
+    135deg,
+    rgba(34, 181, 115, 0.35),
+    transparent 40%,
+    rgba(61, 139, 253, 0.2)
+  );
+}
+
+/* 3D tilt target */
+[data-tilt] {
+  transform-style: preserve-3d;
+  transition: transform 0.15s ease-out, box-shadow 0.25s ease;
+}
+
+[data-reveal] {
+  filter: blur(6px);
+}
+
+[data-reveal].is-visible {
+  filter: blur(0);
+  transition:
+    opacity 0.7s var(--ease, ease),
+    transform 0.7s var(--ease, ease),
+    filter 0.8s var(--ease, ease);
+}
+
+@media (max-width: 768px) {
+  [data-reveal] {
+    filter: none;
+  }
+
+  [data-reveal].is-visible {
+    filter: none;
+  }
+
+  .fx-orb-b,
+  .fx-orb-c {
+    display: none;
+  }
+
+  .fx-orb-a {
+    width: 70vw;
+    height: 50vw;
+    opacity: 0.35;
+  }
+
+  .fx-grid::after {
+    animation-duration: 14s;
+  }
+
+  .fx-spotlight {
+    display: none;
+  }
+
+  #backdrop.is-loaded {
+    animation: none;
+    transform: scale(1);
+  }
+
+  .topbar::before {
+    animation-duration: 10s;
+    opacity: 0.5;
+  }
+}
+
+@media (hover: none) and (pointer: coarse) {
+  .fx-spotlight,
+  .fx-spotlight--lag,
+  .fx-cursor-ring,
+  .fx-cursor-dot,
+  .fx-trail-canvas {
+    display: none;
+  }
+
+  body.has-pointer-fx,
+  body.has-pointer-fx a,
+  body.has-pointer-fx button {
+    cursor: auto;
+  }
+
+  [data-tilt] {
+    transform: none !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fx-ambient,
+  .fx-spotlight,
+  .fx-spotlight--lag,
+  .fx-cursor-ring,
+  .fx-cursor-dot,
+  .fx-trail-canvas {
+    display: none;
+  }
+
+  body.has-pointer-fx,
+  body.has-pointer-fx a,
+  body.has-pointer-fx button {
+    cursor: auto;
+  }
+
+  #backdrop.is-loaded {
+    animation: none;
+  }
+
+  .topbar::before,
+  .hero-title,
+  .page-head h1,
+  .hero-label,
+  .hero-label::before,
+  .topbar-brand img.is-ready {
+    animation: none;
+  }
+
+  .fx-grid::after {
+    animation: none;
+  }
+
+  [data-reveal] {
+    filter: none;
+  }
+
+  a.bento-item:hover,
+  .link-tile:hover {
+    transform: none;
+  }
+}

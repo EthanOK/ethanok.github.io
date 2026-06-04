@@ -1,7 +1,41 @@
-<svg t="1695711232688" class="icon" viewBox="0 0 1024 1024" version="1.1"
-    xmlns="http://www.w3.org/2000/svg" p-id="2075" width="400" height="400">
-    <path d="M0 0h1024v1024H0z" fill="#202425" opacity=".01" p-id="2076"></path>
-    <path d="M33.764 550.451a34.13 34.13 0 0 1 10-24.136 34.143 34.143 0 0 1 24.14-9.997h887.638a34.143 34.143 0 0 1 24.14 9.997 34.13 34.13 0 0 1 10 24.136v371.334a34.13 34.13 0 0 1-10 24.135 34.143 34.143 0 0 1-24.14 9.998H67.904a34.143 34.143 0 0 1-24.14-9.998 34.13 34.13 0 0 1-10-24.135V550.45z" fill="#19A15F" p-id="2077"></path>
-    <path d="M102.4 102.23c0-18.86 15.282-34.148 34.133-34.148h750.934c18.851 0 34.133 15.289 34.133 34.148v512.213c0 18.859-15.282 34.147-34.133 34.147H750.933a34.126 34.126 0 0 0-24.136 10.002 34.155 34.155 0 0 0-9.997 24.146v17.073a34.155 34.155 0 0 1-9.997 24.146 34.126 34.126 0 0 1-24.136 10.002H341.333a34.126 34.126 0 0 1-24.136-10.002 34.155 34.155 0 0 1-9.997-24.146v-17.073a34.155 34.155 0 0 0-9.997-24.146 34.126 34.126 0 0 0-24.136-10.002H136.533c-18.851 0-34.133-15.288-34.133-34.147V102.23z" fill="#A1D06B" p-id="2078"></path>
-    <path d="M341 813h341v68H341zM341 230h341v68H341zM341 401h341v68H341z" fill="#FFFFFF" p-id="2079"></path>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="Site">
+  <defs>
+    <linearGradient id="accent" x1="4" y1="4" x2="28" y2="28" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#22b573" />
+      <stop offset="100%" stop-color="#19a15f" />
+    </linearGradient>
+  </defs>
+  <rect width="32" height="32" rx="8" fill="#0a0c0b" />
+  <rect
+    width="32"
+    height="32"
+    rx="8"
+    fill="none"
+    stroke="url(#accent)"
+    stroke-width="1"
+    opacity="0.4"
+  />
+  <!-- Bento 宫格：与首页布局呼应，非字母 -->
+  <rect x="6" y="6" width="11" height="9" rx="3" fill="url(#accent)" opacity="0.88" />
+  <rect
+    x="19"
+    y="6"
+    width="7"
+    height="9"
+    rx="3"
+    fill="none"
+    stroke="#f6f5f2"
+    stroke-width="1.2"
+    opacity="0.55"
+  />
+  <rect x="6" y="17" width="20" height="9" rx="3" fill="#f6f5f2" opacity="0.22" />
+  <path
+    d="M22.5 9.2 24.8 11.5M24.8 11.5 22.5 11.5M24.8 11.5 24.8 9.2"
+    fill="none"
+    stroke="#22b573"
+    stroke-width="1.35"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+  <circle cx="8.5" cy="8.5" r="1.6" fill="#f6f5f2" opacity="0.85" />
 </svg>
