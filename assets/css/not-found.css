@@ -1,0 +1,262 @@
+/* 404 — ink manuscript + Go green accent (matches go.svg) */
+:root {
+  --nf-bg: #0a0d0c;
+  --nf-ink: #e8e4dc;
+  --nf-muted: #8a8578;
+  --nf-accent: #19a15f;
+  --nf-accent-dim: #a1d06b;
+  --nf-glow: rgba(25, 161, 95, 0.35);
+  --nf-rule: rgba(232, 228, 220, 0.12);
+  --nf-font-display: "Syne", system-ui, sans-serif;
+  --nf-font-body: "IBM Plex Serif", "Noto Serif SC", Georgia, serif;
+  --nf-font-zh: "Noto Serif SC", "IBM Plex Serif", serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+}
+
+body.nf-page {
+  margin: 0;
+  min-height: 100dvh;
+  font-family: var(--nf-font-body);
+  color: var(--nf-ink);
+  background: var(--nf-bg);
+  overflow-x: hidden;
+}
+
+.nf-grain {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.45;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.08'/%3E%3C/svg%3E");
+}
+
+.nf-grid {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image:
+    linear-gradient(var(--nf-rule) 1px, transparent 1px),
+    linear-gradient(90deg, var(--nf-rule) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: radial-gradient(ellipse 80% 70% at 50% 40%, black 20%, transparent 75%);
+}
+
+.nf-orb {
+  position: fixed;
+  width: min(90vw, 520px);
+  height: min(90vw, 520px);
+  top: -12%;
+  right: -18%;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--nf-glow) 0%, transparent 68%);
+  pointer-events: none;
+  z-index: 0;
+  animation: nf-pulse 8s ease-in-out infinite alternate;
+}
+
+@keyframes nf-pulse {
+  from {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0.85;
+    transform: scale(1.06);
+  }
+}
+
+.nf-wrap {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100dvh;
+  padding: clamp(1.5rem, 5vw, 3rem);
+  text-align: center;
+}
+
+.nf-code {
+  font-family: var(--nf-font-display);
+  font-weight: 800;
+  font-size: clamp(6rem, 28vw, 14rem);
+  line-height: 0.85;
+  letter-spacing: -0.06em;
+  margin: 0;
+  background: linear-gradient(
+    165deg,
+    var(--nf-ink) 0%,
+    var(--nf-muted) 45%,
+    var(--nf-accent-dim) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  transform: translateX(-0.04em);
+  animation: nf-rise 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.nf-code span {
+  display: inline-block;
+  animation: nf-rise 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.nf-code span:nth-child(1) {
+  animation-delay: 0.05s;
+}
+.nf-code span:nth-child(2) {
+  animation-delay: 0.12s;
+}
+.nf-code span:nth-child(3) {
+  animation-delay: 0.19s;
+  color: var(--nf-accent);
+  -webkit-text-fill-color: var(--nf-accent);
+}
+
+@keyframes nf-rise {
+  from {
+    opacity: 0;
+    transform: translateY(1.2rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.nf-title {
+  margin: 0.5rem 0 0;
+  font-family: var(--nf-font-display);
+  font-size: clamp(1rem, 3vw, 1.35rem);
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--nf-muted);
+  animation: nf-rise 0.8s 0.25s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.nf-verse {
+  margin: 1.75rem auto 0;
+  max-width: 28rem;
+  font-family: var(--nf-font-zh);
+  font-size: clamp(1.05rem, 2.8vw, 1.25rem);
+  line-height: 1.85;
+  font-weight: 400;
+  color: var(--nf-ink);
+  animation: nf-rise 0.8s 0.38s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.nf-verse cite {
+  display: block;
+  margin-top: 0.65rem;
+  font-size: 0.82em;
+  font-style: normal;
+  color: var(--nf-muted);
+  letter-spacing: 0.12em;
+}
+
+.nf-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1rem;
+  justify-content: center;
+  margin-top: 2.25rem;
+  animation: nf-rise 0.8s 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.nf-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.72rem 1.35rem;
+  font-family: var(--nf-font-display);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--nf-bg);
+  background: var(--nf-accent);
+  border: 1px solid var(--nf-accent);
+  border-radius: 2px;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.15s ease;
+}
+
+.nf-btn:hover,
+.nf-btn:focus-visible {
+  background: var(--nf-accent-dim);
+  border-color: var(--nf-accent-dim);
+  box-shadow: 0 0 32px var(--nf-glow);
+  transform: translateY(-2px);
+  outline: none;
+}
+
+.nf-btn--ghost {
+  color: var(--nf-ink);
+  background: transparent;
+  border-color: var(--nf-rule);
+}
+
+.nf-btn--ghost:hover,
+.nf-btn--ghost:focus-visible {
+  color: var(--nf-accent-dim);
+  border-color: var(--nf-accent);
+  background: rgba(25, 161, 95, 0.08);
+  box-shadow: none;
+}
+
+.nf-mark {
+  position: fixed;
+  bottom: 1.25rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+  font-family: var(--nf-font-display);
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--nf-muted);
+  opacity: 0.6;
+}
+
+.nf-mark a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.nf-mark a:hover {
+  color: var(--nf-accent-dim);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nf-code,
+  .nf-code span,
+  .nf-title,
+  .nf-verse,
+  .nf-actions,
+  .nf-orb {
+    animation: none;
+  }
+
+  .nf-btn:hover,
+  .nf-btn:focus-visible {
+    transform: none;
+  }
+}

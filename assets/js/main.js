@@ -27,22 +27,31 @@ var iUp = (function () {
 	};
 })();
 
-function getBingImages(imgUrls) {
-	/**
-	 * 获取Bing壁纸
-	 * 先使用 GitHub Action 每天获取 Bing 壁纸 URL 并更新 images.json 文件
-	 * 然后读取 images.json 文件中的数据
-	 */
-	var indexName = "bing-image-index";
-	var index = sessionStorage.getItem(indexName);
+function applyBingBackground(imageUrl) {
 	var panel = document.querySelector('#panel');
-	if (isNaN(index) || index == 7) index = 0;
-	else index++;
-	var imgUrl = imgUrls[index];
-	var url = "https://www.cn.bing.com" + imgUrl;
-	panel.style.background = "url('" + url + "') center center no-repeat #666";
+	if (!panel) return;
+	panel.style.background =
+		"url('" + imageUrl + "') center center no-repeat #666";
 	panel.style.backgroundSize = "cover";
-	sessionStorage.setItem(indexName, index);
+}
+
+/**
+ * 浏览器直接拉取 Bing 壁纸（经 302 到 cn.bing.com 图片），无需 Action push images.json
+ * idx 0–7 对应近期壁纸，sessionStorage 轮换，行为与原先一致
+ */
+function loadBingWallpaper() {
+	var indexName = "bing-image-index";
+	var index = parseInt(sessionStorage.getItem(indexName), 10);
+	if (isNaN(index) || index >= 7) index = 0;
+	else index += 1;
+	sessionStorage.setItem(indexName, String(index));
+
+	var bg =
+		"https://bing.img.run/rand.php?idx=" +
+		index +
+		"&_=" +
+		Date.now();
+	applyBingBackground(bg);
 }
 
 function decryptEmail(encoded) {
@@ -51,6 +60,8 @@ function decryptEmail(encoded) {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
+	loadBingWallpaper();
+
 	// 获取一言数据
 	var xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function () {
